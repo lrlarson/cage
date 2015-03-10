@@ -6,74 +6,216 @@
     
     
   <!--- 4'33" code --->
+
+<cffunction name="getUploadedRecordings" access="remote" returnFormat="json">
+<cfquery name="recordings" datasource="cage">
+SELECT  [id]
+      ,CONVERT(VARCHAR(20), dateTimeCreated, 100)AS dateTimeCreated
+      ,[lat]
+      ,[long]
+      ,[recordist]
+      ,[title]
+      ,[recordingUUID]
+      ,[geoHash]
+      ,[inExact]
+  FROM [Cage].[dbo].[tbl_4-33Data]
+  </cfquery>
+<cfreturn recordings>
+</cffunction>
+
+<cffunction name="getUploadedRecordings2" access="remote" returnFormat="json">
+<cfcontent type="application/json">
+<cfquery name="recordings" datasource="cage">
+SELECT  [id]
+      ,CONVERT(VARCHAR(20), dateTimeCreated, 100)AS dateTimeCreated
+      ,[lat]
+      ,[long]
+      ,[recordist]
+      ,[title]
+      ,[recordingUUID]
+      ,[geoHash]
+      ,[inExact]
+  FROM [Cage].[dbo].[tbl_4-33Data]
+
+</cfquery>
+ <cfset arrGirls = QueryToStruct( recordings ) />
+ <cfset objectWrapper = structNew()>
+   <cfset objectWrapper.recordings = #arrGirls#>
+<cfreturn objectWrapper>
+</cffunction>
+
   
-   <cffunction name="recordingUpload" access="remote" returntype="any">
-      <cfargument name="dateTimeCreatedString" type="string" required="yes">
-      <cfargument name="lat" type="string" required="yes">
-      <cfargument name="long" type="string" required="yes">
-      <cfargument name="recordist" type="string" required="yes">
-      <cfargument name="title" type="string" required="yes">
-      <cfargument name="recordingUUID" type="string" required="yes">
-      <cfargument name="geoHash" type="string" required="yes">
-      <cfargument name="inExact" type="string" required="no" default="f">
+ <!---- Current Production ----> 
+<cffunction name="getUploadedRecordings3" access="remote" returnFormat="json">
+<cfargument type="string" name="date" required="false" default="12252013">
+<cfargument type="numeric" name="maxPoints" required="false" default="-1">
+<cfargument type="string" name="hashes" required="true">
+
+
+<cfscript>
+hashList = hashes.split("_");
+numberOfHashes = ArrayLen(hashList);
+hashLength = len(hashList[1]);
+</cfscript>
+<cfset instring = "">
+<cfloop from="1" to="#numberOfHashes#" index="i">
+
+<cfif numberOfHashes EQ 1>
+    
+<cfset inString = inString & "#hashList[i]#">    
+
+<cfelse>
+<cfif i EQ 1>
+<cfset inString = inString & "#hashList[i]#',">  
+<cfelseif i LT numberOfHashes>
+<cfset inString = inString & "'#hashList[i]#',">  
+<cfelse>
+<cfset inString = inString & "'#hashList[i]#">  
+</cfif>
+</cfif>         
+</cfloop>
+<cfcontent type="application/json">
+
+
+<cfquery name="recordings" datasource="cage" result="sql">
+SELECT  
+      <cfif #maxPoints# NEQ -1>
+      <cfset maxPoints = maxPoints >
+      top #maxPoints#
+      </cfif>
+      [id]
+      ,CONVERT(VARCHAR(20), dateTimeCreated, 100)AS dateTimeCreated
+      ,[lat]
+      ,[long]
+      ,[recordist]
+      ,[title]
+      ,[recordingUUID]
+      ,[geoHash]
+      ,[inExact]
+      ,dateTimeCreated as dateSort
+  FROM [Cage].[dbo].[tbl_4-33Data]
+  where LEFT([geoHash],#hashLength#) IN ('#preserveSingleQuotes(inString)#')
+  order by dateSort DESC
+  
+</cfquery>
+ <cfset arrGirls = QueryToStruct( recordings ) />
+ <cfset objectWrapper = structNew()>
+   <cfset objectWrapper.recordings = #arrGirls#>
+<cfreturn objectWrapper>
+
+</cffunction>  
+ 
+ <cffunction name="getUploadedRecordings4" access="remote" returnFormat="json">
+<cfargument type="string" name="date" required="false" default="12252013">
+<cfargument type="numeric" name="maxPoints" required="false" default="-1">
+<cfargument type="string" name="hashes" required="true">
+<cfscript>
+hashList = hashes.split("_");
+numberOfHashes = ArrayLen(hashList);
+hashLength = len(hashList[1]);
+</cfscript>
+<cfset instring = "">
+<cfloop from="1" to="#numberOfHashes#" index="i">
+
+<cfif i EQ 1>
+<cfset inString = inString & "#hashList[i]#',">  
+<cfelseif i LT numberOfHashes>
+<cfset inString = inString & "'#hashList[i]#',">  
+<cfelse>
+<cfset inString = inString & "'#hashList[i]#">  
+</cfif>         
+</cfloop>
+<cfcontent type="application/json">
+
+<!---
+<cfquery name="recordings" datasource="cage">
+SELECT  [id]
+      ,CONVERT(VARCHAR(20), dateTimeCreated, 100)AS dateTimeCreated
+      ,[lat]
+      ,[long]
+      ,[recordist]
+      ,[title]
+      ,[recordingUUID]
+      ,[geoHash]
+      ,[inExact]
+  FROM [Cage].[dbo].[tbl_4-33Data]
+  where LEFT([geoHash],#hashLength#) IN ('#inString#')
+</cfquery>
+ <cfset arrGirls = QueryToStruct( recordings ) />
+ <cfset objectWrapper = structNew()>
+   <cfset objectWrapper.recordings = #arrGirls#>
+<cfreturn objectWrapper>
+--->
+<cfset returnString = " where LEFT([geoHash],#hashLength#) IN ('#inString#')">
+<cfreturn hashList[1]>
+</cffunction>  
+ 
+ 
+  
    
+    
+     
+       
+  <cffunction name="recordingUpload" access="remote" returntype="any">
+  <cfargument name="dateTimeCreated" type="date" required="yes">
+  <cfargument name="lat" type="string" required="yes">
+  <cfargument name="long" type="string" required="yes">
+  <cfargument name="recordist" type="string" required="yes">
+  <cfargument name="title" type="string" required="yes">
+  <cfargument name="recordingUUID" type="string" required="yes">
+   
+<cfif IsNumeric(title)>
+<cfset title = title & '_'>      
+</cfif> 
+    
+    <cfif IsNumeric(recordist)>
+<cfset recordist = recordist & '_'>      
+</cfif> 
+      
    
    <cfquery datasource="cage" name="checkExistingRecord">
-   SELECT [id]
+   SELECT [id],[recordingUUID]
   FROM [Cage].[dbo].[tbl_4-33Data]
   WHERE [recordingUUID] = '#recordingUUID#'
    </cfquery>
    
    <cfif checkExistingRecord.recordCount GT 0>
-   
-       <cfquery datasource="cage" name="updateRecording">
+     <cfquery datasource="cage" name="updateRecording">
                   UPDATE dbo.[tbl_4-33Data]
-                
-                set recordist = '#XmlFormat(recordist,true)#',
-                title = '#XmlFormat(title,true)#' 
+                SET dateTimeCreated = '#dateTimeRecorded#',
+                lat = '#lat#',
+                long = '#long#',
+                recordist = '#recordist#',
+                title = '#title#'
                 WHERE recordingUUID = '#recordingUUID#'
            </cfquery>
            
            <cfreturn checkExistingRecord>
    
-   <cfelse>
    
-   <!--- Parse the date --->
-  <cfset Year = #left(dateTimeCreatedString,4)#>
-<cfset Month = #mid(dateTimeCreatedString,5,2)#>
-<cfset Day = #mid(dateTimeCreatedString,7,2)#>
-<cfset Hour	= #mid(dateTimeCreatedString,9,2)#>
-<cfset Minute	= #mid(dateTimeCreatedString,11,2)#>
-<cfset dateTimeCreated = CreateDateTime(#Year#,#Month#,#Day#,#Hour#,#Minute#,0)>
-
+   <cfelse>
    
   
   <cfquery name="insertRecording" datasource="cage" >
- INSERT INTO dbo.[tbl_4-33Data]
-        ( 
-          dateTimeCreated ,
+  INSERT INTO dbo.[tbl_4-33Data]
+        ( dateTimeCreated ,
           lat ,
           long ,
           recordist ,
           title ,
-          recordingUUID ,
-          geoHash ,
-          inExact
+          recordingUUID
         )
-VALUES  ( 
-          #dateTimeCreated# , 
-          '#lat#' ,
-         '#long#' , 
-          '#XmlFormat(recordist,true)#' , 
-          '#XmlFormat(title,true)#' , 
-          '#recordingUUID#' ,
-          '#geoHash#' ,
-          '#inExact#'  
+VALUES  ( '#dateTimeCreated#' , -- dateTimeCreated - datetime
+         '#lat#' , -- lat - nvarchar(100)
+          '#long#' , -- long - nvarchar(100)
+          '#recordist#' , -- recordist - nvarchar(100)
+          '#title#' , -- title - nvarchar(100)
+          '#recordingUUID#'  -- recordingUUID - nvarchar(100)
         )
- 
+   SELECT @@IDENTITY AS newID
   
   </cfquery>
- 
+  <cfreturn insertRecording>
   
   </cfif>
   </cffunction>
@@ -364,5 +506,83 @@ and Cage_Cunningham = 1
  <cfreturn filteredWorks>
  </cffunction>
  
+     <cffunction name="QueryToStruct" access="public" returntype="any" output="false"
+	hint="Converts an entire query or the given record to a struct. This might return a structure (single record) or an array of structures.">
+
+	<!--- Define arguments. --->
+	<cfargument name="Query" type="query" required="true" />
+	<cfargument name="Row" type="numeric" required="false" default="0" />
+
+	<cfscript>
+
+		// Define the local scope.
+		var LOCAL = StructNew();
+
+		// Determine the indexes that we will need to loop over.
+		// To do so, check to see if we are working with a given row,
+		// or the whole record set.
+		if (ARGUMENTS.Row){
+
+			// We are only looping over one row.
+			LOCAL.FromIndex = ARGUMENTS.Row;
+			LOCAL.ToIndex = ARGUMENTS.Row;
+
+		} else {
+
+			// We are looping over the entire query.
+			LOCAL.FromIndex = 1;
+			LOCAL.ToIndex = ARGUMENTS.Query.RecordCount;
+
+		}
+
+		// Get the list of columns as an array and the column count.
+		LOCAL.Columns = ListToArray( ARGUMENTS.Query.ColumnList );
+		LOCAL.ColumnCount = ArrayLen( LOCAL.Columns );
+
+		// Create an array to keep all the objects.
+		LOCAL.DataArray = ArrayNew( 1 );
+
+		// Loop over the rows to create a structure for each row.
+		for (LOCAL.RowIndex = LOCAL.FromIndex ; LOCAL.RowIndex LTE LOCAL.ToIndex ; LOCAL.RowIndex = (LOCAL.RowIndex + 1)){
+
+			// Create a new structure for this row.
+			ArrayAppend( LOCAL.DataArray, StructNew() );
+
+			// Get the index of the current data array object.
+			LOCAL.DataArrayIndex = ArrayLen( LOCAL.DataArray );
+
+			// Loop over the columns to set the structure values.
+			for (LOCAL.ColumnIndex = 1 ; LOCAL.ColumnIndex LTE LOCAL.ColumnCount ; LOCAL.ColumnIndex = (LOCAL.ColumnIndex + 1)){
+
+				// Get the column value.
+				LOCAL.ColumnName = LOCAL.Columns[ LOCAL.ColumnIndex ];
+
+				// Set column value into the structure.
+				LOCAL.DataArray[ LOCAL.DataArrayIndex ][ LOCAL.ColumnName ] = ARGUMENTS.Query[ LOCAL.ColumnName ][ LOCAL.RowIndex ];
+
+			}
+
+		}
+
+
+		// At this point, we have an array of structure objects that
+		// represent the rows in the query over the indexes that we
+		// wanted to convert. If we did not want to convert a specific
+		// record, return the array. If we wanted to convert a single
+		// row, then return the just that STRUCTURE, not the array.
+		if (ARGUMENTS.Row){
+
+			// Return the first array item.
+			return( LOCAL.DataArray[ 1 ] );
+
+		} else {
+
+			// Return the entire array.
+			return( LOCAL.DataArray );
+
+		}
+
+	</cfscript>
+</cffunction>
    
 </cfcomponent>

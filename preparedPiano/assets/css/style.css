@@ -1,1 +1,48 @@
-@charset "utf-8";/* CSS Document */.header { background:#f4f4f6; padding:0 0 39px 0;}.container_12-out { width:1020px; margin:0 auto; background:url(../images/ipad2.png) left 65px no-repeat;}.container_12.top-sec { padding:22px 0 0 0;}.share { font-size:14px; position:fixed; top:14px; left:30px; }.share a {color:#808080; text-decoration:none;}.container_12.top-sec dfn {}.navigation {}.navigation li { padding:0 0 2px 0; font-size:14px;}.navigation li a { color:#808080; text-decoration:none;}.navigation li a:hover { color:#000;}.navigation li.other { color:#000; font-style:italic;}.navigation li.other small { font-style:normal; color:#ffc100; font-size:11px;}.right-list {}.right-list li { padding:0 0 2px 0; color:#808080;}.right-list li a { color:#808080; text-decoration:none;}.right-list li a:hover { color:#000;}.right-list li.other { color:#000;}#content-main { margin:65px 0 0 0; overflow:hidden; padding:0 0 50px 0;}#content-main h1 { font-weight:normal;}#content-main p { padding:22px 0 0 0;}#content-main dfn { font-size:16px;}#content-main dfn a { color:#000; font-style:normal; display:block; margin:22px 0 0 0; text-decoration:underline;}#content-main dfn a:hover { text-decoration:none;}.list-first {}.list-first li { padding:0px 0 1px 8px; background:url(../images/dot.png) left 9px no-repeat; }.list-social { padding:30px 0 0 0;}.list-social li { float:left; margin:0 15px 0 0;}.app-store { background:url(../images/yellow-bg.png) left top no-repeat; padding:10px 0 0 8px; height:71px; width:220px; position:relative;}.app-store:hover, .app-store.selected { background:url(../images/grey-bg.png) left top no-repeat;}.app-store img { float:left; margin-right:5px;}.app-store span { color:#fff; padding:20px 0 0 10px; display:none; position:absolute;}.app-store:hover span { display:block; }.support { background:url(../images/support.png) left top no-repeat; display:block; text-transform:uppercase; padding:0 0 0 15px; margin:0px 0 0 0; line-height:50px; font-size:14px; color:#fff;}.info { margin:22px 0 0 0;}#content-main .info p { color:#808080; padding:7px 0 0 0;}
+@charset "utf-8";
+/* CSS Document */
+
+.header { background:#f4f4f6; padding:0 0 39px 0;}
+.container_12-out { width:1020px; margin:0 auto; background:url(../images/ipad2.png) left 65px no-repeat;}
+.container_12.top-sec { padding:22px 0 0 0;}
+.share { font-size:14px; position:fixed; top:14px; left:30px; }
+.share a {color:#808080; text-decoration:none;}
+.container_12.top-sec dfn {}
+
+.navigation {}
+.navigation li { padding:0 0 2px 0; font-size:14px;}
+.navigation li a { color:#808080; text-decoration:none;}
+.navigation li a:hover { color:#000;}
+.navigation li.other { color:#000; font-style:italic;}
+.navigation li.other small { font-style:normal; color:#ffc100; font-size:11px;}
+
+.right-list {}
+.right-list li { padding:0 0 2px 0; color:#808080;}
+.right-list li a { color:#808080; text-decoration:none;}
+.right-list li a:hover { color:#000;}
+.right-list li.other { color:#000;}
+
+#content-main { margin:65px 0 0 0; overflow:hidden; padding:0 0 50px 0;}
+#content-main h1 { font-weight:normal;}
+#content-main p { padding:22px 0 0 0;}
+#content-main dfn { font-size:16px;}
+#content-main dfn a { color:#000; font-style:normal; display:block; margin:22px 0 0 0; text-decoration:underline;}
+#content-main dfn a:hover { text-decoration:none;}
+
+.list-first {}
+.list-first li { padding:0px 0 1px 8px; background:url(../images/dot.png) left 9px no-repeat; }
+
+.list-social { padding:30px 0 0 0;}
+.list-social li { float:left; margin:0 15px 0 0;}
+
+.app-store { background:url(../images/yellow-bg.png) left top no-repeat; padding:10px 0 0 8px; height:71px; width:220px; position:relative;}
+.app-store:hover, .app-store.selected { background:url(../images/grey-bg.png) left top no-repeat;}
+.app-store img { float:left; margin-right:5px;}
+
+
+.app-store span { color:#fff; padding:20px 0 0 10px; display:none; position:absolute;}
+.app-store:hover span { display:block; }
+
+.support { background:url(../images/support.png) left top no-repeat; display:block; text-transform:uppercase; padding:0 0 0 15px; margin:0px 0 0 0; line-height:50px; font-size:14px; color:#fff;}
+.info { margin:22px 0 0 0;}
+#content-main .info p { color:#808080; padding:7px 0 0 0;}
+

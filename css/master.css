@@ -1,12 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
 
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
-  #realityradio{
-	  display:none;
-}
-}
-
 body
 {
 	color: #000;
@@ -15,28 +9,22 @@ body
 	background: #f4f4f6 url(../img/johncage_bg_new.jpg) no-repeat top center fixed;
 }
 
-body #reality{
-	background: #f4f4f6 url(img/realityradio.jpg) no-repeat top center fixed;
-}
-p.asLong{ 
-text-align:right;
-}
 
 body.about
 {
 	background: #f4f4f6 url(../img/about_bg.jpg) repeat top fixed;
 }
 
-body.index_new
-{
-	color: #000;
-	font: 14px/22px Georgia, serif;
-	padding-top: 20px;
-	background: #f4f4f6 url(../img/cage_birthday.jpg) no-repeat top left fixed;
+/* Current Homepage*/
 
+
+body.index_4_33
+{
+	color: #fff;
+	background: #000 url(../img/4_33_bg.gif) no-repeat top right fixed;
 }
 
-body.index_4_33 a{ color: #fff; }
+body.index_4_33 a { color: #fff; }
 
 body.index_4_33 a:hover { color: #fff; background-color: #007aff; }
 
@@ -44,23 +32,9 @@ body.index_4_33 #footer a { color: #fff; }
 
 body.index_4_33 #footer a:hover { color: #fff; background-color: #007aff; }
 
-body.index_4_33 #nav li a, body.fourthirtythree #nav li a, body.xmas #nav li a { color: #fff; }
+body.index_4_33 #nav li a, body.fourthirtythree #nav li a { color: #fff; }
 
-body.index_4_33 #nav li a:hover, body.fourthirtythree #nav li a:hover, body.xmas #nav li a:hover { color: #fff; background-color: #007aff; }
-
-#feature {
-	width: 700px;
-	position: absolute;
-	bottom: 100px;
-	left: 50px;
-
-}
-
-#feature h1 {
-		font-size: 35px;
-		line-height: 50px;
-		margin-bottom: 0;
-	}
+body.index_4_33 #nav li a:hover, body.fourthirtythree #nav li a:hover { color: #fff; background-color: #007aff; }
 
 .fourthirtythree {
 	background: #f4f4f4 url(../img/4_33_bg_2.gif) no-repeat top left fixed;
@@ -91,6 +65,8 @@ body.index_4_33 #nav li a:hover, body.fourthirtythree #nav li a:hover, body.xmas
 	text-decoration: underline;
 }
 
+/* New Homepage*/
+
 body.index_realityradio { 
 	background: #a13028 url(../img/realityradio.jpg) no-repeat top left fixed;
 	background-position: 50% 50%;
@@ -113,19 +89,25 @@ body.index_realityradio #footer a:hover { color: white; text-decoration:  underl
 #realityradio {
 	width:  600px;
 	height: 420px;
-	background-color: #a13028;
+	background-color: rgba(161, 48, 40, .8);
 	color: white;
 	position: absolute;
 	bottom: 0px;
-	right: 50px;
+	right: 0px;
 	padding: 30px;
 	font-family: "freight-display-pro", Georgia;
 	letter-spacing: .03em;
 	z-index: 999;
 }
 
+#realityradio2 {
+	display: none;
+	}
+
+#realityradio .column { width: 46%; float: left; padding-right: 15px;}
+
 #realityradio h1 { 
-	font-family: "jaf-facitweb", Arial;
+	font-family: "source-sans-pro", Arial;
 	font-size: 23px;
 	padding-top: 20px; 
 	text-align: left;
@@ -141,8 +123,6 @@ body.index_realityradio #footer a:hover { color: white; text-decoration:  underl
 	text-transform: uppercase;
 	font-size: 15px;
 }
-
-#realityradio .column { width: 46%; float: left; padding-right: 15px;}
 
 input, button {
 	background: #fff; 
@@ -215,21 +195,103 @@ input:last-child:hover {
 }
 
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 
-	#realityradio {
-	width:  99%;
-	height: 320px;
-	background-color: #a13028;
+#realityradio { display: none;}
+
+#realityradio2 {
+	display: block;
+	width:  80%;
+	height: 310px;
+	background-color: rgba(161, 48, 40, .8);
 	color: white;
 	position: absolute;
-	left: 0px;
-	bottom: 0;
+	bottom: 0px;
+	right: 50px;
 	padding: 30px;
 	font-family: "freight-display-pro", Georgia;
 	letter-spacing: .03em;
-	z-index: 999;
-	}
+	z-index: 999;	
+}
+
+#realityradio2 h1 { 
+	font-family: "source-sans-pro", Arial;
+	font-size: 23px;
+	padding-top: 0px; 
+	text-align: left;
+	text-transform: uppercase; 
+	font-weight: bold;
+} 
+#realityradio2 p {
+	font-size: 18px;
+	line-height: 23px;
+}
+#realityradio2 strong {
+	font-family: "source-sans-pro", Arial;
+	text-transform: uppercase;
+	font-size: 15px;
+}
+
+#realityradio2 input, button {
+	background: #fff; 
+	color: #a13028;
+	padding: 10px;
+	border-style: none;
+	margin: 5px;
+	float: left;
+	font-family: "source-sans-pro", Arial;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 0;
+  -webkit-transition: color .15s ease-in-out;
+  -moz-transition: color .15s ease-in-out;
+  -o-transition: color .15s ease-in-out;
+  transition: color .15s ease-in-out;
+
+     -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none; 
+}
+
+#realityradio2 input:hover {
+	background: #000;
+	color: #fff;
+}
+
+#realityradio2 input:first-child {
+	background: rgba(0, 0, 0, 1);
+	height: 40px; 
+	color: #fff;
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+	font-weight: bold;
+	border: 2px solid rgba(0, 0, 0, 1);
+	padding-top: 5px;
+	-webkit-transition: color .2s ease-out;
+	-moz-transition: color .2s ease-out;
+	-o-transition: color .2s ease-out;
+	transition: color .2s ease-out; 
+}
+
+#realityradio2 input:last-child {
+	background: rgba(0,0,0,0.25);
+	color: white;
+	-webkit-transition: color .2s ease-out;
+	-moz-transition: color .2s ease-out;
+	-o-transition: color .2s ease-out;
+	transition: color .2s ease-out; 
+}
+
+#realityradio2 input:last-child:hover {
+	width: 100px;
+	float: left;
+	background: rgba(0,0,0,1);
+	-webkit-transition: color .2s ease-out;
+	-moz-transition: color .2s ease-out;
+	-o-transition: color .2s ease-out;
+	transition: color .2s ease-out; 
+}
 
 	#footer {
 		display: none !important; 
@@ -237,6 +299,22 @@ input:last-child:hover {
 
 }
 
+body.sonatas_and_interludes { background: #000 url(http://www.johncage.org/preparedPiano/assets/images/wiread_new.jpg) no-repeat top left fixed; }
+
+body.sonatas_and_interludes #nav li a { color: #999; }
+
+body.prepared_piano { background: #f4f4f4 url(../img/prepared_piano.png) no-repeat top left fixed; }
+
+body.prepared_piano_essay { background: #000 url(../img/prepared_piano_essay.jpg) no-repeat top left fixed; }
+
+body.prepared_piano_essay #nav li a { color: #999; }
+
+body.prepared_piano_essay #nav .selected { color: #333333; }
+
+body.autobio
+{
+	background: #f4f4f6 url(../img/autobio_bg.jpg) repeat top fixed;
+}
 
 a
 {
