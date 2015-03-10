@@ -1,0 +1,1 @@
+<cfcomponentoutput="false"hint="I define application settings and event handlers."> <!--- Define the application settings. ---><cfset this.sessionManagement = false /></cfcomponent> 

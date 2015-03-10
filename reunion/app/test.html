@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://hungry-media.com/code/html5-audio-sync/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>HTML5 Audio Playback Syncing</title>
+<style>
+
+</style>
+<script src="./HTML5 Audio Playback Syncing_files/jquery.min.js"></script>
+
+<style type="text/css"></style></head>
+
+<body>
+<div id="loading" class="done">Loading Audio... <span id="bytes">bytes</span></div>
+<h1>HTML5 Audio Playback Syncing</h1>
+
+
+<audio id="au1"> <source src="1-01 Panzer Nightopia (Message From Nightopia) [MattInc].mp3" type="audio/mpeg"> </audio>
+<audio id="au2"> <source src="1-02 Dreams Dreams (Disco NiGHTS Mix) [Dreams Dreams] (AkumajoBelmont, Level 99).mp3" type="audio/mpeg"> </audio>
+<audio id="au3"> <source src="1-03 From Dusk til Dawn (Fragmented Nights) [pu_freak].mp3" type="audio/mpeg"> </audio>
+<audio id="au4"> <source src="1-04 Lies Within Dreams (Deep It Lies) [LuIzA].mp3" type="audio/mpeg"> </audio>
+<audio id="au5"> <source src="1-05 Reverse Rain (The Amazing Water) [Rozovian].mp3" type="audio/mpeg"> </audio>
+<audio id="au6"> <source src="1-06 She Can Has Long Ears (She Had Long Ears) [Fishy].mp3" type="audio/mpeg"> </audio>
+<audio id="au7"> <source src="1-07 The Desert Had a Strange Dream (The Dragon Gave a Loud Scream) [Dj Mokram].mp3" type="audio/mpeg"> </audio>
+<audio id="au8"> <source src="1-08 The NiGHT Has Just Begun... (Under Construction) [ProtoDome].mp3" type="audio/mpeg"> </audio>
+<audio id="au9"> <source src="1-09 New Jack Mantle (The Mantle) [Tryezz feat. DiGi Valentine].mp3" type="audio/mpeg"> </audio>
+<audio id="au10"> <source src="1-10 Slumber on a City Corner (Dreams Dreams - In Silent Memory) [audio fidelity, Josh Dunlap, Eric Griffin, Ben Charles].mp3" type="audio/mpeg"> </audio>
+<audio id="au11"> <source src="1-11 The Nemesis Schema (NiGHTS and Reala) [Level 99, prophetik, Avaris].mp3" type="audio/mpeg"> </audio>
+<audio id="au12"> <source src="1-12 Tomorrow Should Have Been Last Night (After The Dream) [OA, DragonAvenger].mp3" type="audio/mpeg"> </audio>
+
+<div id="sliders">X</div>
+
+<div id="info"></div>
+
+<script>
+
+var au = [];
+var len = 12
+
+
+var syncingFeeling;
+
+
+$(document).ready(function() {
+
+sliderhtml = ""
+for(i = 1; i <= len; ++i)
+{
+	au[i] = document.getElementById('au' + i);
+
+	console.log(i + sliderhtml)
+	sliderhtml += "<input id = \"idslide"+i+"\" name = \"idslide"+i+"\" type=\"range\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.1\">"
+}
+
+
+$('#sliders').html(sliderhtml)
+
+syncingFeeling = setInterval( 'syncTime()', 250 );
+
+var firstRun = true;
+
+$(':input').change( function(){
+	if(  firstRun ){
+		for(i = 1; i <= len; ++i)
+		{  au[i].play();  }
+		firstRun = false;
+	}
+
+	for(i = 1; i <= len; ++i)
+	{
+		var val = parseFloat($('#idslide' + i).val(), 10)
+		au[i].volume = val
+	}
+});
+
+})
+
+
+
+
+function syncTime(){
+	var msg = '';
+
+	$('#info').html( msg );
+	$('#info').append( "<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vocal currentTime: " + au1.currentTime );
+	$('#info').append( "<br />Instrumental currentTime: " + au2.currentTime );
+}
+
+</script>
+
+
+</body></html>

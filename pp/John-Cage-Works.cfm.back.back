@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>John Cage Complete Works</title>
+<link href="assets/works.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="assets/css/reset.css" />
+<link type="text/css" rel="stylesheet" href="assets/css/960.css" />
+<!--- set up cfajax proxy, using JSON cfc --->
+
+<cfajaxproxy cfc="cageJSON" jsclassname="cageJSON">
+
+<!--- set up jQuery --->
+<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+</script>
+
+<!--- get the page's JS --->
+<script type="text/javascript" src="assets/js/cage.js"></script>
+
+<!--- init normal CFC for non ajax calls  --->
+<cfscript>
+cage = CreateObject("Component","cage");
+cage.init();
+manuscriptLocations = cage.getManuscriptLocations();
+ensembleTypes = cage.getEnsembleTypes();
+instrumentTypes = cage.getInstrumentTypes();
+specificInstruments = cage.getSpecificInstruments();
+collaborators = cage.getCollaborators();
+</cfscript>
+
+
+
+
+</head>
+
+<body>
+<div class="header"><div class="container_12 top-sec">
+<span class="share"><div class="addthis_toolbox">
+    <div class="custom_hover">
+        <span class="custom_button">+Share</span>
+    </div>
+    <div class="hover_menu">
+        <div class="column1">
+            <a class="addthis_button_email">Email</a>
+        </div>
+        <div class="column2">
+            <a class="addthis_button_print">Print</a>
+        </div>
+        <div class="clear"></div>
+        <div class="top"></div>
+        <div class="column1">
+            <a class="addthis_button_twitter">Twitter</a>
+            <a class="addthis_button_facebook">Facebook</a>
+            <a class="addthis_button_myspace">MySpace</a>
+        </div>
+        <div class="column2">
+            <a class="addthis_button_delicious">Delicous</a>
+            <a class="addthis_button_stumbleupon">Stumble</a>
+            <a class="addthis_button_digg">Digg</a>
+        </div>
+        <div class="clear"></div>
+        <div class="more">
+            <a class="addthis_button_expanded">More...</a>
+        </div>
+    </div>
+</div></span>
+
+<div class="grid_2 prefix_4 "><dfn>John Cage</dfn></div>
+
+<div class="grid_3">
+<ul class="navigation">
+  <li><a href="2012">2012 Centennial</a></li>
+  <li class="new"><a href="./sonatas-and-interludes.cfm">Sonatas and Interludes - New</a></li>
+                  <li><a href="../autobiographical_statement.html" title="An autobiographical statement of John Cage.">Autobiographical Statement</a></li>
+                  <li><a href="../about.html" title="Learn more about the John Cage Trust.">The John Cage Trust</a></li>
+                  <li><a href="../indeterminacy.html" title="Eddie Kohler's beautiful application devoted to John Cage's Indeterminacy: New Aspect of Form in Instrumental and Electronic Music.">Indeterminacy</a></li>
+<li><a href="../cagePiano.html">Prepared Piano App</a> <small>New</small></li>
+ <li><a href="http://www.johncage.org/autobio/JohnCageFolksonomy.html" target="_blank" class="external" title="Announcing the John Cage Folksonomy, an expandable roster of friends and acquaintances of John Cage to which you can contribute.">Folksonomy</a></li>
+                  <li><a href="../blog.html" title="Official blog of the John Cage Trust. Laura Kuhn, Executive Director.">Kuhn's Blog</a></li>
+<li class="other">Cage Database - Beta</li>
+</ul>
+</div>
+
+<div class="grid_3 omega">
+<ul class="right-list">
+
+</ul>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+
+<!--- begin main content --->
+<div class="container_12">
+
+<div class="grid_3"> <!--- left column --->
+<table width="220px" border="0"  cellpadding="10" style="" class="tableTop">
+  <tr>
+    <td class="labelCell" height="30"  >Search</td>
+  </tr>
+  <tr>
+   <td  class="tableRegularCell" height="20px" style="padding-top:15px; padding-bottom:15px; width:100%">
+   <input type="text" id="stringSearch" placeholder="Search for a Title" maxlength="32"  /> 
+     <button id="doSearch" title="GO" onClick="updateFilters()" value="GO" name="GO">Go</button>   
+   </td>
+  </tr>
+  <tr>
+  <td class="labelCell" style="background-color:#000; width:50%">Filter<span style="padding-left:120px"><a href="javascript:resetSearch()">Reset</a></span></td>  
+  </tr>
+  <tr>
+   <td  class="tableRegularCell" height="20px" style="padding-top:15px; padding-bottom:6px; width:100%">
+    <select name="length" onchange="updateFilters()" id="selectLength" style="width:170px; display:block;">
+      <option value="0" label="Duration" selected="selected">Duration</option>
+      <option value="1" label="< 10'">< 10'</option>
+      <option value="2" label="10' - 19'">10' - 19'</option>
+      <option value="3" label="20 - 29'">20 - 29'</option>
+      <option value="4" label="> 30'" >> 30'</option>
+    </select>   
+   </td>
+  </tr>
+  <tr>
+  <tr>
+   <td  class="tableRegularCell" height="20px" style="padding-top:1px; padding-bottom:6px; width:100%">
+    <select name="premiereYear" onchange="updateFilters()" id="selectPremiere" style="width:170px; display:block;">
+      <option value="0" label="Premiere Date" selected="selected">Premiere Date</option>
+      <option value="1" label="Before 1940" >Before 1940</option>
+      <option value="2" label="1940 - 1949">1940 - 1949</option>
+      <option value="3" label="1950 - 1959">1950 - 1959</option>
+      <option value="4" label="1960 - 1969">1960 - 1969</option>
+      <option value="5" label="1970 - 1979">1970 - 1979</option>
+      <option value="6" label="1980 - 1989">1980 - 1989</option>
+      <option value="7" label="After 1990">After 1990</option>
+    </select>
+   </td>
+  </tr>
+  <tr>
+  <tr>
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+     <select name="manuscriptLocation" onchange="updateFilters()" id="selectManuscript"  style="width:170px; display:block;">
+      <option value="0" label="Manuscript Location" selected="selected"> Manuscript Location</option>
+      <cfoutput query="manuscriptLocations">
+        <option value="#data#" label="#label#">#label#</option> 
+      </cfoutput>
+    </select>
+   </td>
+  </tr>
+  <tr>
+    <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+      <select name="ensembleType" onchange="updateFilters()" id="selectEnsembleType" style="width:170px; display:block;">
+    	<option value="0" label="Ensemble Type" selected="selected">Ensemble Type</option>
+        <cfoutput query="ensembleTypes">
+        <option value="#data#" label="#label#">#label#</option>
+        </cfoutput>
+    </select>
+   </td>
+  </tr>
+  <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+     <select name="instrumentType" onchange="updateFilters()" id="selectInstrumentType" style="width:170px; display:block;">
+    	<option value="0" label="Instrument Type" selected="selected">Instrument Type</option>
+        <cfoutput query="instrumentTypes">
+        <option value="#data#" label="#label#">#label#</option>
+        </cfoutput>
+     </select>
+   </td>
+  </tr>
+  <tr>
+  
+  <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+     <select name="specificInstrument" onchange="updateFilters()" id="selectSpecificInstrument" style="width:170px; display:block;">
+    	<option value="0" label="Specific Instrument" selected="selected">Specific Instrument</option>
+        <cfoutput query="specificInstruments">
+        <option value="#data#" label="#label#">#label#</option>
+        </cfoutput>
+     </select> 
+   </td>
+  </tr>
+  <tr>
+  
+  <td  class="tableRegularCell" height="15px" style="padding-top:25px; padding-bottom:6px; width:100%">
+  <span style="font-family:Arial, Helvetica, sans-serif; ">
+     Number of Players<br />
+     <input  type="number" id="numberOfPlayers" placeholder="number" width="3"/><button id="doSearch" title="GO" onClick="updateFilters()" value="GO" name="GO">Go</button> <br />
+    <p>
+       <label>
+         <input type="radio" name="radioNumber" value="1" id="radioNumber_0" checked>
+         <small>Exactly this Number</small></label>
+       <br>
+       <label>
+         <input type="radio" name="radioNumber" value="2" id="radioNumber_1">
+         <small>Up to This Number</small></label>
+       <br>
+       <label>
+         <input type="radio" name="radioNumber" value="3" id="radioNumber_2">
+         <small>At Least this Number</small></label>
+       <br>
+    </p>
+    </span>
+   </td>
+  </tr>
+  <tr>
+  
+   <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:15px; padding-bottom:6px; width:100%">
+     <select name="collaborators" onchange="updateFilters()" id="selectCollaborator" style="width:170px; display:block;">
+    	<option value="0" label="Collaborator" selected="selected">Collaborator</option>
+        <cfoutput query="collaborators">
+        <option value="#data#" label="#label#">#label#</option>
+        </cfoutput>
+     </select>
+   </td>
+  </tr>
+  <tr>
+  
+   <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+     <select name="cunningham" onchange="updateFilters()" id="selectCunningham" style="width:170px; display:block;">
+    	<option value="0" label="Cunningham Related" selected="selected">Cunningham Related</option>
+        <option value="1" label="Used by Cunningham">Used by Cunningham</option>
+     </select> 
+   </td>
+  </tr>
+  
+   <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+    <select name="recordingExists" onchange="updateFilters()" id="selectRecording" style="width: 170px; display: block; ">
+    	<option value="0" label="Recordings" selected="selected">Recordings</option>
+         <option value="1" label="Recordings known">Recordings known</option>
+        <option value="2" label="Recordings not known">Recordings not known</option>
+        <option value="3" label="Reset - Show all works">Reset - Show all works</option>
+     </select>
+   </td>
+  </tr>
+  
+   <tr>
+  
+   <td  class="tableRegularCell" height="15px" style="padding-top:1px; padding-bottom:6px; width:100%">
+    <select name="published" onchange="updateFilters()" id="selectPublished" style="width:170px; display:block; color:#333">
+    	<option value="0" label="Published?" selected="selected">Published?</option>
+         <option value="1" label="Published">Published</option>
+        <option value="2" label="Not Published">Not Published</option>
+        <option value="3" label="Reset - Show all works">Reset - Show all works</option>
+     </select>  
+   </td>
+  </tr>
+  
+   <tr>
+  
+   <td  class="tableRegularCell" height="100px" style="padding-top:1px; padding-bottom:6px; width:100%">
+    &nbsp;&nbsp;
+   </td>
+  </tr>
+  
+</table>
+
+
+</div> <!--- end grid 3 end left column--->
+<div class="grid_4">
+<table width="100%" border="0"  cellpadding="10" style="" class="tableTop">
+  <tr>
+    <td height="30" class="labelCell" >Title</td>
+  </tr>
+</table>
+ <div class="content" id="contentCenter" style="overflow:scroll;-moz-box-shadow: 0 0 2px 2px #888;
+-webkit-box-shadow: 0 0 2px 2px#888;
+box-shadow: 0 0 2px 2px #888;">
+
+    <div id="loading" >
+      <table id="loadingTable">
+  		<tr class="danceRow">
+        <td class="tableRegularCell" ><i>Please Wait...</i></td>
+        </tr>
+       </table> 
+    </div>
+	
+	      <table id="worksTable" width="100%" border="-2px"  cellpadding="10" >
+  		
+        
+        </table>
+    <!-- end .content --></div>
+
+</div> <!--- end grid 4 --->
+
+<div class="grid_5">
+ <div class="content" style="-moz-box-shadow: 0 0 2px 2px #888;
+-webkit-box-shadow: 0 0 2px 2px#888;
+box-shadow: 0 0 2px 2px #888; ">
+<table width="100%" border="0"  cellpadding="10" style="" class="tableTop">
+  <tr>
+    <td height="30" class="labelCell" >Work Summary<span style="padding-left:145px" id="detailLink"><a href="#">Permalink</a></span></td>
+  </tr>
+</table>
+<div class="workDetails" id="workDetails"  >
+    	<div id="scalarDetails"  >
+        <div id="pleaseClick">
+        	<table id="pleaseClickTable" width="100%"  >
+  		<tr class="danceRow">
+        <!--- height below shoud be 644px--->
+        <td class="tableRegularCell" style="color:#999"  >Click on a work title to view a summary</td>
+        </tr>
+       </table>
+       <!--- work details here to be placed in JS--->
+       <table id="detailsTable" width="100%"  style="overflow:scroll" >
+       
+       
+       </table>
+        
+        </div>
+        </div>
+        </div>
+    	<div id="recordings" >
+   		<table id="recordingsTable">
+        </table>
+    	</div>
+    
+    </div>
+</div>
+
+
+
+
+</div>
+<div class="clear"></div>
+
+</body>
+<script type="text/javascript">
+	$(document).ready(function(e) {
+		 $("#loading").hide();
+		 $('#detailTable').hide();	
+       getFilteredWorks(length,premiereYear,manuscriptLocation,ensembleType,instrumentType,specificInstrument,searchString,collaborators,recordings,published,numberString,numberLimit,cunningham);
+	   $('td').click(function(event){
+		//alert($(this).attr('id')); 
+	   	$(this).toggleClass("highlight");
+	    });
+    });
+	</script>
+
+</html>

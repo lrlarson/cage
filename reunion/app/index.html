@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<script src="soundmanager2/script/soundmanager2.js"></script>
+<!-- <script src="../HTML5 Audio Playback Syncing_files/jquery.min.js"></script> -->
+<script src="soundman.js"></script>
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<script type="text/ecmascript" src="htmlchess/common/xhr.js"></script>
+<script type="text/ecmascript" src="htmlchess/chess.js"></script>
+<link type="text/css" rel="stylesheet" href="htmlchess/css/chess.css" />
+<link type="text/css" rel="stylesheet" href="htmlchess/skins/gnomechess.css" />
+<title>2D/3D Javascript Chess</title>
+<script type="text/javascript">
+var nVwPressed = false;
+function pressVwBtn(nBtnId) {
+}
+
+// Firefox only
+function onPGNLoaded(frEvnt) {
+	var sFBody = frEvnt.target.result;
+	chess.readPGN(sFBody, document.chessCtrl3.plyerClr2[1].checked);
+}
+
+// Firefox only
+function loadPGNFile() {
+	var oFile = document.getElementById("PGNFileData").files[0];
+	if (oFile) {
+		var oFReader = new FileReader();
+		oFReader.onload = onPGNLoaded;
+		oFReader.readAsText(oFile);
+	}
+}
+
+function initChess() {
+	// Set to '1' in soundman.js init
+	if(window.location.search == "?murphy")
+	{
+		chess.useAI(0);
+	}
+	else
+	{
+		chess.useAI(1);
+	}
+	chess.setPromotion(0);
+	chess.setFrameRate(1000);
+	chess.setSide(0);
+	chess.useKeyboard(1);
+
+	chess.placeById("chessDesk");
+	chess.setPlyDepth(3);
+	console.log("set ply:", chess.getPlyDepth());
+	chess.setView(1);
+	pressVwBtn(1);
+}
+</script>
+<style type="text/css">
+hr {
+	width: 30%;
+	margin-top: 32px;
+	margin-bottom: 24px;
+}
+
+img.tbBtn {
+	cursor: pointer;
+	margin: 1px 3px 1px 3px;
+}
+
+#pgnTable {
+	width: auto;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	border: 0;
+}
+
+#pgnTable tr td { padding: 2px; }
+
+#chessDesk {
+	clear: both;
+	width: auto;
+	height: auto;
+	margin-top: 32px;
+	margin-bottom: 32px;
+}
+
+#chessToolBar {
+	width: 550px;
+	height: auto;
+	margin: 12px auto;
+	background-color: #969696;
+	-moz-box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	-webkit-box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	border-bottom: 1px solid #424242;
+	text-align:center;
+	padding: 6px 3px 2px 3px;
+}
+
+#setViewBtns {
+	width: auto;
+	float: left;
+}
+
+#setViewBtns span {
+	margin: 0 3px;
+	display: inline-block;
+	font: 12px / 13px "Lucida Grande", sans-serif;
+	text-shadow: rgba(255, 255, 255, 0.4) 0 1px;
+	padding: 3px 6px;
+	border: 1px solid rgba(0, 0, 0, 0.6);
+	background-color: #969696;
+	cursor: default;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+	box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+}
+#setViewBtns span.pressedBtn {
+	background: #B5B5B5;
+	-moz-box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+	-webkit-box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+	box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+}
+</style>
+</head>
+
+<body onload="initChess();">
+
+<form name="chessCtrl1" onsubmit="return(false);">
+
+
+<p style="text-align:center;" id="topinfo">[<em id="soundstatus">Sounds Loaded: 0</em> &nbsp; | &nbsp; Quality: <select onchange="CAJsetAudioQuality(this.selectedIndex);" name="setAudioQuality"><option>Low</option><option>Medium</option><option>High</option></select> &nbsp; | &nbsp;<input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked /> <label for="useAIAsk">Use A.I.</label> | <input type="button" name="strtBtn" value="New game" onclick="chess.organize(0);" /> &nbsp;]</p>
+
+</form>
+
+<div id="chessDesk"></div>
+
+
+</script>
+</body>
+</html>

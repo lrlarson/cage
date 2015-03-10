@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta property="og:title" content="Music recorded with the CagePiano App" />
+<meta property="og:description" content="The CagePiano app for iOS and Android lets you play prepared piano sounds created using John Cage's original collection of preparations. This recording was created in the app and shared to the cloud for playing." />
+<meta property="og:image" content="http://arttattler.com/Images/Europe/England/London/Baltic%20Arts%20Centre/John%20Cage%20Mix/07-John-Cage-Preparing-a-Piano.jpg" />
+<meta charset="UTF-8">
+<title>CagePiano Play and Share</title>
+<cfparam type="string" name="audio" default="">
+
+</head>
+
+<body>
+<!-- AddThis Button BEGIN -->
+<p>Follow Us</p>
+<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+<a class="addthis_button_facebook_follow" addthis:userid="johncagetrust"></a>
+<a class="addthis_button_twitter_follow" addthis:userid="johncagetrust"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=jackfreud"></script>
+<!-- AddThis Button END -->
+<p>
+<p>
+<p>
+Here is a recording made using <a href="http://www.johncage.org">CagePiano.</a>
+</p>
+<audio controls>
+<cfoutput>
+  <source src="uploads\#audio#" type="audio/mpeg"/>
+
+  <!--source src="#audio#.ogg" type="audio/ogg"/-->
+</cfoutput>
+</audio>
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=jackfreud"></script>
+<!-- AddThis Button END -->
+
+</body>
+</html>
