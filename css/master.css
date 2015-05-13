@@ -67,6 +67,42 @@ body.index_4_33 #nav li a:hover, body.fourthirtythree #nav li a:hover { color: #
 
 /* New Homepage*/
 
+#nws {
+	background-color: #004ebc; 
+	width:  600px;
+	height: 420px;
+	opacity: .8;
+	padding: 10px; 
+	font-weight: 300;
+	position: absolute;
+	top: 210px;
+	right: 0px;
+	padding: 30px;
+	font-family: "source-sans-pro", Arial !important;
+	color: #fff;
+	height: 25px;
+	text-align: center;
+	  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+}
+
+#nws:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+#nws h1 {
+	font-family: "source-sans-pro", Arial !important;
+	font-weight: 100;
+}
+
+#nws a, #nws a:visited {
+	text-decoration: none;
+	color: #fff;
+}
+
 body.index_realityradio { 
 	background: #a13028 url(../img/realityradio.jpg) no-repeat top left fixed;
 	background-position: 50% 50%;
@@ -98,6 +134,31 @@ body.index_realityradio #footer a:hover { color: white; text-decoration:  underl
 	font-family: "freight-display-pro", Georgia;
 	letter-spacing: .03em;
 	z-index: 999;
+}
+
+#newWorldSymphony {
+	width: 500px;
+	height: 20px;
+	background-color: rgba(0, 78, 168, 0.8);
+	color: white;
+	position: absolute;
+	bottom: 500px;
+	right: 50px;
+	padding: 30px;
+	font-family: "freight-display-pro", Georgia;
+	letter-spacing: .03em;
+	z-index: 999;
+	font-size: 23px;
+	font-weight: bold;
+	text-transform: uppercase;}
+
+#newWorldSymphony a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#newWorldSymphony a:hover {
+	background: none;
 }
 
 #realityradio2 {
