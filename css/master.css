@@ -112,6 +112,27 @@ body.index_realityradio {
     background-size: cover; /*generic*/
 }
 
+body.index_MTT { 
+	background: #a13028 url(../img/NWS.jpg) no-repeat top left fixed;
+	background-position: 50% 50%;
+	-webkit-background-size: cover; /*for webKit*/
+    -moz-background-size: cover; /*Mozilla*/
+    -o-background-size: cover; /*opera*/
+    background-size: cover; /*generic*/
+}
+
+body.index_MTT #nav li a { color: #fff; }
+
+body.index_MTT #nav li a:hover { color: #fff; text-decoration:  underline; background-color: transparent; }
+
+body.index_MTT #footer { color: white; }
+
+body.index_MTT #footer a { color: white; }
+
+body.index_MTT #footer a:hover { color: white; text-decoration:  underline; underline; background-color: transparent; }
+
+
+
 body.index_realityradio #nav li a { color: #fff; }
 
 body.index_realityradio #nav li a:hover { color: #fff; text-decoration:  underline; background-color: transparent; }
@@ -160,6 +181,32 @@ body.index_realityradio #footer a:hover { color: white; text-decoration:  underl
 #newWorldSymphony a:hover {
 	background: none;
 }
+
+#newWorldSymphony_MTT {
+	width: 500px;
+	height: 20px;
+	background-color: rgba(0, 78, 168, 0.8);
+	color: white;
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	padding: 30px;
+	font-family: "freight-display-pro", Georgia;
+	letter-spacing: .03em;
+	z-index: 999;
+	font-size: 23px;
+	font-weight: bold;
+	text-transform: uppercase;}
+
+#newWorldSymphony_MTT a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#newWorldSymphony_MTT a:hover {
+	background: none;
+}
+
 
 #realityradio2 {
 	display: none;
@@ -489,11 +536,20 @@ p
 	margin-right: 20px;
 }
 
+
+
+
 #share {
 	position: fixed;
 	top: 20px;
 	left: 10px;
 	color: #ccc;
+}
+
+@media (max-width: 1100px) {
+#share {
+	top: 100px!important;
+	}
 }
 
 #share a {
