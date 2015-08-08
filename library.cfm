@@ -144,7 +144,7 @@ keywordList = cageData.getKeywords();
 <div class="grid_8">
 
   <table width="100%" border="0"  cellpadding="10" style="" class="tableTop">
-  		<tr><td height="30" class="labelCell" >Titles</td></tr>
+  		<tr><td height="30" class="labelCell" id="titlesText" >Titles</td></tr>
   </table>
 
  <div class="content" id="showBooks">

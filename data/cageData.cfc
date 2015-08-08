@@ -187,6 +187,55 @@
 	<cfreturn searchTitles>
 </cffunction>
 
+<cffunction name="getRandomTitles" access="remote"  returntype="Any" >
+	<cfquery name="searchTitles" datasource="cageWebUSer" >
+	SELECT TOP 10 [ID]
+      ,[Book Title] as Title
+      ,NEWID() AS row
+      ,[recordID]
+      ,[Author]
+      ,[Editor]
+      ,[Translators]
+      ,[Type]
+      ,[Publisher]
+      ,[Pub Date]
+      ,[No.]
+      ,[Vol.]
+      ,[Edition]
+      ,[genre]
+      ,[Book Signed]
+      ,[Message]
+      ,[Condition]
+      ,[Condition Notes]
+      ,[Duplicate Copies]
+      ,[Duplicate Detail]
+      ,[Annotations]
+      ,[Type of Annotation]
+      ,[Keywords]
+      ,[ISBN]
+      ,[Cover_Image]
+      ,[Notes]
+      ,[Call Number]
+      ,[imageFileName]
+      ,[shelved]
+      ,[updated]
+      ,[needToFind]
+      ,[internalNotes]
+      ,[last_edit_date]
+      ,[last_edit_by]
+      ,[tempISBN]
+      ,[tempCallNumber]
+      ,[language]
+      ,[detailNotes]
+      ,[processed]
+      ,[coverImage]
+  FROM [Cage].[dbo].[tbl_CageLibrary]	
+  order by row
+	</cfquery>
+	<cfreturn searchTitles>
+</cffunction>
+
+
 
 <cffunction name="getTitles" access="remote" returntype="Any" >
 	<cfquery datasource="cageWebUSer" name="titles">

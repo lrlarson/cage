@@ -231,7 +231,7 @@ body.index_realityradio #footer a:hover { color: white; text-decoration:  underl
 	text-transform: uppercase;
 	font-size: 15px;
 }
-
+/*
 input, button {
 	background: #fff; 
 	color: #a13028;
@@ -301,7 +301,7 @@ input:last-child:hover {
 	-o-transition: color .2s ease-out;
 	transition: color .2s ease-out; 
 }
-
+*/
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 

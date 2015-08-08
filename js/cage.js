@@ -12,6 +12,7 @@ var author = '';
 var publisher = '';
 var editor = '';
 var translator = '';
+var randomLoad = 0;
 
 
 var handlePageLoad = function(){
@@ -21,7 +22,7 @@ var handlePageLoad = function(){
 }
 
 var handleSearchChange = function(event) {
-    //checkLibState();
+    randomLoad = 0;
     getControlValues();
     getFilteredValues();
 
@@ -30,6 +31,7 @@ var handleSearchChange = function(event) {
 var getFilteredValues = function(){
     $('#showBooks').hide();
     $('#hideBooks').show();
+   if (randomLoad == 0){
     $.ajax({
         url: dataHost,
         data: {
@@ -66,13 +68,53 @@ var getFilteredValues = function(){
 
             $('#showBooks').show();
             $('#hideBooks').hide();
-
+            $('#titlesText').text(numberOfRecords.number + ' Books Selected');    
 
         },
         error:function(d,r,o){
             console.log(d,r,o);
         }
+    
     });
+   }else{// Random load ----
+         $.ajax({
+        url: dataHost,
+        data: {
+            method: 'getRandomTitles',
+            returnFormat: 'json'
+        },
+        method: 'GET',
+        dataType: "json",
+        async: true,
+        success: function (d, r, o) {
+            workReturn = $.serializeCFJSON({
+                data: d
+            });
+
+            var numberOfRecords = {
+                number: workReturn.data.length
+            };
+
+            console.log(workReturn);
+
+
+            var booksTemplateScript = $('#books-template').html();
+            booksTemplate= Handlebars.compile(booksTemplateScript);
+            $('#booksDisplay').empty();
+            $('#booksDisplay').append(booksTemplate(workReturn));
+
+            $('#showBooks').show();
+            $('#hideBooks').hide();
+            $('#titlesText').text('10 Random Books Selected. (Click Reset to see another 10, or use Search By)');
+
+        },
+        error:function(d,r,o){
+            console.log(d,r,o);
+        }
+    
+    });
+   
+   }
 }
 
 
@@ -152,13 +194,14 @@ var     checkLibState = function(){
         //alert('There is a search state' + searchState.length);
         $.each(searchState,function(index, obj) {
 
-            //console.log('in the each  ' +obj.date + ' ' + index);
+            console.log('in the each  ' +obj.minute + ' ' + index);
             if (index == stateRecords - 1){
-                //console.log('index found');
+                console.log('index found');
                 //check here for time record
                 var thisMoment = Math.round(new Date().getTime() / 1000);
                 thatMoment = obj.minute;
                 if (thisMoment - thatMoment < 15){
+                    randomload = 0;
                     title = obj.title;
                     keyword =  obj.keyword;
                     publishDate = obj.publishDate;
@@ -168,10 +211,15 @@ var     checkLibState = function(){
                     editor = obj.editor;
                     translator = obj.translator;
                     updateControlValues();
+                }else{
+                //alert('load random?');
+                randomLoad = 1;
                 }
             }
 
         });
+    }else{
+       randomLoad = 1; 
     }
 }
 
@@ -221,7 +269,9 @@ var reset = function(){
     setControlValues();
     // to handle stored search parameters
     getControlValues();
+    randomLoad = 1;
     getFilteredValues();
+    
 }
 
 
